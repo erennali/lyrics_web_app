@@ -8,45 +8,67 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="text-center">Şarkı Sözleri Arama</h3>
+                <div class="card-header">
+                    <h3 class="text-center text-white">
+                        <i class="fas fa-music me-2"></i>Şarkı Sözleri Arama
+                    </h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Search" method="post">
-                        <div class="form-group mb-3">
-                            <label asp-for="Artist" class="form-label">Sanatçı</label>
-                            <input asp-for="Artist" class="form-control" required />
+                    <form asp-action="Search" method="post" class="needs-validation" novalidate id="lyricsForm">
+                        <div class="form-group mb-4">
+                            <label asp-for="Artist" class="form-label">
+                                <i class="fas fa-user me-2"></i>Sanatçı
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-microphone"></i>
+                                </span>
+                                <input asp-for="Artist" class="form-control" placeholder="Sanatçı adını girin" required />
+                            </div>
                             <span asp-validation-for="Artist" class="text-danger"></span>
                         </div>
-                        <div class="form-group mb-3">
-                            <label asp-for="Title" class="form-label">Şarkı Adı</label>
-                            <input asp-for="Title" class="form-control" required />
+                        <div class="form-group mb-4">
+                            <label asp-for="Title" class="form-label">
+                                <i class="fas fa-headphones me-2"></i>Şarkı Adı
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-music"></i>
+                                </span>
+                                <input asp-for="Title" class="form-control" placeholder="Şarkı adını girin" required />
+                            </div>
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Ara</button>
+                            <button type="submit" class="btn btn-primary btn-lg" id="searchButton">
+                                <i class="fas fa-search me-2"></i>Şarkı Sözlerini Bul
+                            </button>
                         </div>
                     </form>
 
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+
                     @if (TempData["SuccessMessage"] != null)
                     {
-                        <div class="alert alert-success mt-3">
-                            @TempData["SuccessMessage"]
+                        <div class="alert alert-success mt-4">
+                            <i class="fas fa-check-circle me-2"></i>@TempData["SuccessMessage"]
                         </div>
                     }
 
                     @if (!string.IsNullOrEmpty(Model.ErrorMessage))
                     {
-                        <div class="alert alert-danger mt-3">
-                            @Model.ErrorMessage
+                        <div class="alert alert-danger mt-4">
+                            <i class="fas fa-exclamation-circle me-2"></i>@Model.ErrorMessage
                         </div>
                     }
 
                     @if (!string.IsNullOrEmpty(Model.Lyrics))
                     {
                         <div class="mt-4">
-                            <h4 class="text-center">@Model.Artist - @Model.Title</h4>
-                            <div class="lyrics-container mt-3 p-3 bg-light rounded">
+                            <h4 class="text-center mb-3">
+                                <i class="fas fa-quote-left me-2"></i>@Model.Artist - @Model.Title<i class="fas fa-quote-right ms-2"></i>
+                            </h4>
+                            <div class="lyrics-container">
                                 <pre class="lyrics-text">@Model.Lyrics</pre>
                             </div>
                         </div>
@@ -59,4 +81,29 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Form validation and loading spinner
+        document.getElementById('lyricsForm').addEventListener('submit', function(e) {
+            if (this.checkValidity()) {
+                document.getElementById('loadingSpinner').style.display = 'block';
+                document.getElementById('searchButton').disabled = true;
+            }
+        });
+
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 } 
