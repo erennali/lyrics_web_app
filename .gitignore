@@ -1,0 +1,90 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+## Rider ayarları
+.idea/
+*.sln.iml
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Build çıktıları
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+*.log
+
+## Paketler
+packages/
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+*.pkgproj
+
+## Kullanıcı ayarları
+*.userprefs
+*.csproj.user
+
+## dotCover
+.idea/.idea.DotSettings
+*.dotCover
+
+## Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## NuGet
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Rider çalışma önbelleği
+.idea/
+*.sln.iml
+
+## Temp dosyalar
+~$*
+*.tmp
+*.bak
+
+## Yayınlama klasörü
+publish/
+app.publish/
+
+## log ve crash dosyaları
+*.log
+*.dmp
+
+## .NET çalışma zamanı dosyaları
+*.dbmdl
+*.dbml
+*.pdb
+*.mdb
+*.exe
+*.dll
+
+## Web sunucu önbelleği
+*.svclog
+
+## Kullanıcı tarafından oluşturulan gizli ayarlar
+*.vspscc
+*.vssscc
+
+## Rider local history
+.idea/.idea.LocalHistory/
+
+## wwwroot klasöründeki otomatik oluşan dosyalar (eğer production'da değilse)
+wwwroot/lib/
+
+## Diğer
+TestResults/

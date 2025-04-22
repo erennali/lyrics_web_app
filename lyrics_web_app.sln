@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lyrics_web_app", "lyrics_web_app\lyrics_web_app.csproj", "{A58554D3-1F6F-4341-9BCB-12AAAF2E851E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A58554D3-1F6F-4341-9BCB-12AAAF2E851E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A58554D3-1F6F-4341-9BCB-12AAAF2E851E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A58554D3-1F6F-4341-9BCB-12AAAF2E851E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A58554D3-1F6F-4341-9BCB-12AAAF2E851E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
