@@ -1,0 +1,55 @@
+@model lyrics_web_app.Models.LyricsModel
+
+@{
+    ViewData["Title"] = "Şarkı Sözleri Arama";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center">Şarkı Sözleri Arama</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Search" method="post">
+                        <div class="form-group mb-3">
+                            <label asp-for="Artist" class="form-label">Sanatçı</label>
+                            <input asp-for="Artist" class="form-control" required />
+                            <span asp-validation-for="Artist" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Title" class="form-label">Şarkı Adı</label>
+                            <input asp-for="Title" class="form-control" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Ara</button>
+                        </div>
+                    </form>
+
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger mt-3">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.Lyrics))
+                    {
+                        <div class="mt-4">
+                            <h4 class="text-center">@Model.Artist - @Model.Title</h4>
+                            <div class="lyrics-container mt-3 p-3 bg-light rounded">
+                                <pre class="lyrics-text">@Model.Lyrics</pre>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+} 

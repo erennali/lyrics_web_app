@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,16 +18,25 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+// Redirect Home to Lyrics
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/Home"))
+    {
+        context.Response.Redirect("/Lyrics");
+        return;
+    }
+    await next();
+});
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
 app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    name: "default",
+    pattern: "{controller=Lyrics}/{action=Index}/{id?}");
 
 app.Run();
